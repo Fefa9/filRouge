@@ -1,9 +1,9 @@
 <?php
-$title = "";
+$title = "Liste des Clients";
 ob_start();
 ?>
 
-<h1>Liste des clients</h1>
+<!-- <h1>Liste des clients</h1> -->
 
 <div class="container col-lg-8 w-75">
   <table class="table ">
