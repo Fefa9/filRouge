@@ -22,18 +22,18 @@ ob_start();
             foreach($clients as $client){
                 echo "<tr >";
                 echo "<td class='colid'> $client[idClient] </td>";
-                echo "<td class='colid'><a href=index.php?action=detail&idClient=$client[idClient]> $client[raisonSociale]</td>";
+                echo "<td class='colid'><a href=index.php?action=detailC&id=$client[idClient]> $client[raisonSociale]</td>";
                 echo "<td> $client[CA] </td>";
                 echo "<td> $client[effectifClient] </td>";
                 echo "<td> $client[activite] </td>";
-                echo "<td class='colsuppr'><a href=index.php?action=suppr&idClient=$client[idClient] class='text-danger'>Supprimer</a></td>";
+                echo "<td class='colsuppr'><a href=index.php?action=supprC&id=$client[idClient] class='text-danger'>Supprimer</a></td>";
                 echo "</tr>";
             }
 
         ?>
          <tr>    
             <td colspan="6" class="ajout" style="text-align:center">
-                <a href="index.php?action=add" >Ajouter un client</a>
+                <a href="index.php?action=addC" >Ajouter un client</a>
             </td> 
         </tr>   
     </tbody>

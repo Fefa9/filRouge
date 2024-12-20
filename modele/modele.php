@@ -120,11 +120,12 @@
     // detailler un client
     function  get_details_client($id){
         $connexion= connect_db();
-        $sql="SELECT FROM clients c INNER JOIN contacts INNER JOIN fonctions WHERE c.idClient=:id";
+        $sql="SELECT * FROM clients c  LEFT JOIN contacts co ON c.idClient=co.idClient
+         INNER JOIN fonctions f ON f.idFonc =co.idFonc WHERE c.idClient=:id";
         $reponse=$connexion->prepare($sql);
         $reponse->bindParam(':id', $id, PDO::PARAM_INT);
-        $reponse=execute();
-        
+        $reponse->execute();
+        return $reponse->fetch(PDO::FETCH_ASSOC);
     }
 
 ?>

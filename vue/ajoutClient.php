@@ -5,7 +5,6 @@ ob_start();
 
     <!-- Formulaire stylé avec Bootstrap -->
     <div class="container mt-4">
-        <h2 class="text-center mb-4">Veuillez remplir les champs</h2>
 
 
         <!-- Formulaire avec une largeur de 50% -->

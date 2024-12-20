@@ -8,7 +8,7 @@ include 'modele/modele.php';
 
         require "vue/listeProjets.php";
     }
-    
+
     function ajouter_projet($abrege, $nomProjet, $typeProjet) {
         // Appel de la fonction renommée dans le modèle
         insert_projet($abrege, $nomProjet, $typeProjet);
@@ -110,7 +110,7 @@ include 'modele/modele.php';
     }
 
     function detailler_client($id){
-        get_details_client($id);
+        $client=get_details_client($id);
         require "vue/detailsClient.php";
     }
     
