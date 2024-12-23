@@ -8,14 +8,28 @@ try {
     } else {
         $action = $_GET["action"];
         switch ($action) {
+            
             case "addC":
                 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-                    if (isset($_POST["raisonSociale"], $_POST["CA"], $_POST["effectifClient"], $_POST["idSect"])) {
+                    if (isset($_POST["raisonSociale"], $_POST["CA"], $_POST["effectifClient"])) {
+
+                        $nouvelleActivite = trim($_POST["nouvelleActivite"] ?? ""); // Nouvelle activité, si renseignée
+                        $idSect = (int) ($_POST["idSect"] ?? 0); // ID de l'activité sélectionnée
+
+                        // Si une nouvelle activité est renseignée
+                        if (!empty($nouvelleActivite)) {
+                           
+                            $idSect= ajouter_nouvelle_activite($nouvelleActivite); 
+                            if (!$idSect) {
+                                $erreurs["nouvelleActivite"] = "Impossible d'ajouter cette activité (elle existe déjà ou une erreur est survenue).";
+                            }
+                        }
+
                         $erreurs = control_form(
                             $_POST["raisonSociale"], 
                             $_POST["CA"], 
                             $_POST["effectifClient"], 
-                            $_POST["idSect"]
+                            $idSect
                         );
 
                         if (empty($erreurs)) {
@@ -23,17 +37,20 @@ try {
                                 $_POST["raisonSociale"], 
                                 (float) $_POST["CA"], 
                                 (int) $_POST["effectifClient"], 
-                                (int) $_POST["idSect"]
+                                $idSect
                             );
-                            //header("Location: index.php");
+
                             exit();
                         } else {
+                            $activites = obtenir_activites();
                             require "vue/ajoutClient.php";
                         }
                     } else {
+                        $activites = obtenir_activites();
                         require "vue/ajoutClient.php";
                     }
                 } else {
+                    $activites = obtenir_activites();
                     require "vue/ajoutClient.php";
                 }
                 break;

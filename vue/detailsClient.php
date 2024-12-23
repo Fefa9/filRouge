@@ -15,15 +15,15 @@ ob_start();
             <td><?= htmlspecialchars($client['raisonSociale'] ?? 'N/A') ?></td>
         </tr>
         <tr>
-            <th>CA</th>
-            <td><?= htmlspecialchars($client['CA'] ?? 'N/A') ?> €</td>
+            <th>Nom contact</th>
+            <td><?= htmlspecialchars($client['nomContact'] ?? 'N/A') ?></td>
         </tr>
         <tr>
-            <th>Effectif</th>
-            <td><?= htmlspecialchars($client['effectifClient'] ?? 'N/A') ?></td>
+            <th>Mail</th>
+            <td><?= htmlspecialchars($client['emailContact'] ?? 'N/A') ?></td>
         </tr>
         <tr>
-            <th>Activité</th>
+            <th>Fonction</th>
             <td><?= htmlspecialchars($client['fonction'] ?? 'N/A') ?></td>
         </tr>
     </table>

@@ -26,7 +26,9 @@ ob_start();
                 echo "<td> $client[CA] </td>";
                 echo "<td> $client[effectifClient] </td>";
                 echo "<td> $client[activite] </td>";
-                echo "<td class='colsuppr'><a href=index.php?action=supprC&id=$client[idClient] class='text-danger'>Supprimer</a></td>";
+                echo "<td class='colsuppr'>
+                <a href=index.php?action=supprC&id=$client[idClient] class='text-danger' data-bs-toggle='modal'  data-bs-target='#confirmeSup' >
+                Supprimer</a></td>";
                 echo "</tr>";
             }
 
@@ -38,6 +40,26 @@ ob_start();
         </tr>   
     </tbody>
   </table>
+</div>
+<!-- Modal de confirmation -->
+<div class="modal fade" id="confirmeSup" tabindex="-1" aria-labelledby="confirmeSup" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmeSup">Confirmer de suppression</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Êtes-vous sûr de vouloir supprimer ce client ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        
+        <a href=index.php?action=supprC&id id="confirmDeleteButton" class="btn btn-danger">Supprimer</a>
+      
+        </div>
+    </div>
+  </div>
 </div>
 
     

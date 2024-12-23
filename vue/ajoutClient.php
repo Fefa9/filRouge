@@ -8,7 +8,7 @@ ob_start();
 
 
         <!-- Formulaire avec une largeur de 50% -->
-        <form action="index.php?action=add" method="POST" id="monform" class="needs-validation">
+        <form action="index.php?action=addC" method="POST" id="monform" class="needs-validation">
             <div class="row justify-content-center">
                 <div class="col-md-6"> <!-- Définit la largeur à 50% (col-md-6) de ma page -->
                     
@@ -61,22 +61,35 @@ ob_start();
 <!-- Champ pour idSect -->
                     <div class="mb-3">
                         <label for="idSect " class="form-label">Activité</label>
-                        <input type="number" class="form-control <?php if (!empty($erreurs["idSect"])) echo 'is-invalid'; ?>" 
-                            name="idSect" id="idSect" 
-                            value="<?php echo !empty($_POST["idSect"]) ? ($_POST["idSect"]) : ''; ?>" 
-                            autocomplete="off">
+                        <select name="idSect" id="idSect" class="form-control <?php if (!empty($erreurs["idSect"])) echo 'is-invalid'; ?>">
+                            <option value="">Choix de l'activité</option>
+                            <?php foreach($activites as $activite):?>
+                                <option value="<?= $activite['idSect']?>"
+                                <?php echo (!empty($_POST['idSect']) && $_POST['idSect'] == $activite['idSect']) ? 'selected' : ''; ?>>
+                                <?= htmlspecialchars($activite['activite']) ?>
+                                </option>
+                            <?php endforeach; ?>    
+                        </select>
                         <?php if (!empty($erreurs["idSect"])): ?>
                             <div class="invalid-feedback">
-                                <?php echo $erreurs["idSect"]; ?>
+                                <?= $erreurs["idSect"]; ?>
                             </div>
                         <?php endif; ?>
                     </div>
+<!-- Input pour ajouter une nouvelle activité -->
+                        <div class="mt-3">
+                            <label for="nouvelleActivite" class="form-label">Nouvelle activité</label>
+                            <input type="text" name="nouvelleActivite" id="nouvelleActivite" class="form-control"
+                                value="<?php echo !empty($_POST['nouvelleActivite']) ? htmlspecialchars($_POST['nouvelleActivite']) : ''; ?>"
+                                placeholder="Ajouter une nouvelle activité">
+                        </div>
+                    
 
 
-                    <!-- Boutons d'action -->
+                   
                     <div class="d-flex justify-content-between mt-4">
                         <button type="submit" class="btn btn-primary">Envoyer</button>
-                        <button type="reset" class="btn btn-secondary">Annuler</button>
+                        <a href="index.php" class="btn btn-secondary">Annuler</a>
                     </div>
                 </div>
             </div>

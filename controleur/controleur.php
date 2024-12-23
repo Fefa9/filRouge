@@ -95,6 +95,8 @@ include 'modele/modele.php';
     
         if (empty(trim($raisonSociale))) {
             $tErreurs["raisonSociale"] = "La raison sociale est obligatoire.";
+        } elseif (raison_sociale_existe($raisonSociale)) {
+            $tErreurs["raisonSociale"] = "Cette raison sociale existe déjà.";
         }
         if ($CA <= 0) {
             $tErreurs["CA"] = "Le CA doit être un nombre positif.";
@@ -113,7 +115,11 @@ include 'modele/modele.php';
         $client=get_details_client($id);
         require "vue/detailsClient.php";
     }
-    
+
+
+    function ajouter_nouvelle_activite($nouvelleActivite){
+        insert_nouvelle_activite($nouvelleActivite);
+    }
 
     // function accueil(){
     //    require 'vue/login.php';
